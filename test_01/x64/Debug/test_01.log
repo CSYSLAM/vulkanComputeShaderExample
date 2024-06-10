@@ -1,0 +1,57 @@
+﻿  main.cpp
+C:\software\vs2019\vs2019\VC\Tools\MSVC\14.29.30133\include\optional(126,1): warning C4267: “=”: 从“size_t”转换到“unsigned int”，可能丢失数据
+C:\software\vs2019\vs2019\VC\Tools\MSVC\14.29.30133\include\optional(265): message : 查看对正在编译的函数 模板 实例化“void std::_Optional_construct_base<_Ty>::_Assign<size_t&>(_Ty2)”的引用
+          with
+          [
+              _Ty=uint32_t,
+              _Ty2=size_t &
+          ]
+C:\software\vs2019\vs2019\VC\Tools\MSVC\14.29.30133\include\optional(265): message : 查看对正在编译的函数 模板 实例化“void std::_Optional_construct_base<_Ty>::_Assign<size_t&>(_Ty2)”的引用
+          with
+          [
+              _Ty=uint32_t,
+              _Ty2=size_t &
+          ]
+D:\cg\vulkan\temp\csy_cpp_vulkan\test_01\test_01\main.cpp(61): message : 查看对正在编译的函数 模板 实例化“std::optional<uint32_t> &std::optional<uint32_t>::operator =<size_t&,0>(_Ty2)”的引用
+          with
+          [
+              _Ty2=size_t &
+          ]
+D:\cg\vulkan\temp\csy_cpp_vulkan\test_01\test_01\main.cpp(61): message : 查看对正在编译的函数 模板 实例化“std::optional<uint32_t> &std::optional<uint32_t>::operator =<size_t&,0>(_Ty2)”的引用
+          with
+          [
+              _Ty2=size_t &
+          ]
+C:\software\vs2019\vs2019\VC\Tools\MSVC\14.29.30133\include\xutility(142,1): warning C4267: “初始化”: 从“size_t”转换到“_Ty”，可能丢失数据
+          with
+          [
+              _Ty=unsigned int
+          ]
+C:\software\vs2019\vs2019\VC\Tools\MSVC\14.29.30133\include\optional(115): message : 查看对正在编译的函数 模板 实例化“void std::_Construct_in_place<unsigned int,size_t&>(_Ty &,size_t &) noexcept”的引用
+          with
+          [
+              _Ty=unsigned int
+          ]
+C:\software\vs2019\vs2019\VC\Tools\MSVC\14.29.30133\include\optional(128): message : 查看对正在编译的函数 模板 实例化“_Ty &std::_Optional_construct_base<_Ty>::_Construct<size_t&>(size_t &)”的引用
+          with
+          [
+              _Ty=uint32_t
+          ]
+C:\software\vs2019\vs2019\VC\Tools\MSVC\14.29.30133\include\optional(128): message : 查看对正在编译的函数 模板 实例化“_Ty &std::_Optional_construct_base<_Ty>::_Construct<size_t&>(size_t &)”的引用
+          with
+          [
+              _Ty=uint32_t
+          ]
+C:\software\vs2019\vs2019\VC\Tools\MSVC\14.29.30133\include\optional(265): message : 查看对正在编译的函数 模板 实例化“void std::_Optional_construct_base<_Ty>::_Assign<size_t&>(_Ty2)”的引用
+          with
+          [
+              _Ty=uint32_t,
+              _Ty2=size_t &
+          ]
+C:\software\vs2019\vs2019\VC\Tools\MSVC\14.29.30133\include\optional(265): message : 查看对正在编译的函数 模板 实例化“void std::_Optional_construct_base<_Ty>::_Assign<size_t&>(_Ty2)”的引用
+          with
+          [
+              _Ty=uint32_t,
+              _Ty2=size_t &
+          ]
+  test_01.vcxproj -> D:\cg\vulkan\temp\csy_cpp_vulkan\test_01\x64\Debug\test_01.exe
