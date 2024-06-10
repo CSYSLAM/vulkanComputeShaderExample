@@ -106,6 +106,9 @@ public:
         vkGetDeviceQueue(device, queueFamilyIndex.value(), 0, &queue);
     }
 
+    VkBuffer storageBuffer;
+    VkDeviceMemory storageBufferMemory;
+
 };
 
 
