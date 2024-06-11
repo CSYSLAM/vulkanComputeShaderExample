@@ -31,4 +31,18 @@ namespace CsySmallVk
 		queueCreateInfo.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
 		return queueCreateInfo;
 	}
+
+	inline VkBufferCreateInfo bufferCreateInfo()
+	{
+		VkBufferCreateInfo bufCreateInfo{};
+		bufCreateInfo.sType = VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO;
+		return bufCreateInfo;
+	}
+
+	inline VkMemoryAllocateInfo memoryAllocateInfo()
+	{
+		VkMemoryAllocateInfo memAllocInfo{};
+		memAllocInfo.sType = VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO;
+		return memAllocInfo;
+	}
 }

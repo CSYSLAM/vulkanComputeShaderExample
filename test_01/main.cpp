@@ -109,12 +109,71 @@ public:
     VkBuffer storageBuffer;
     VkDeviceMemory storageBufferMemory;
 
+    void createStorageBuffer()
+    {
+        VkBufferCreateInfo createInfo = CsySmallVk::bufferCreateInfo();
+        createInfo.size = inputDataSize();
+        createInfo.usage = VK_BUFFER_USAGE_STORAGE_BUFFER_BIT;
+        createInfo.sharingMode = VK_SHARING_MODE_EXCLUSIVE;
+        createInfo.queueFamilyIndexCount = 0;
+        createInfo.pQueueFamilyIndices = nullptr;
+        if (vkCreateBuffer(device, &createInfo, nullptr, &storageBuffer) != VK_SUCCESS)
+            throw std::runtime_error("failed to create storage buffer!");
+        VkMemoryRequirements requirements = CsySmallVk::Query::memoryRequirements(device, storageBuffer);
+        CsySmallVk::LogDebug::printMemoryRequirements(requirements);
+
+        VkMemoryAllocateInfo allocInfo = CsySmallVk::memoryAllocateInfo();
+        allocInfo.allocationSize = requirements.size;
+        allocInfo.memoryTypeIndex = findMemoryType(requirements,
+            VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT);
+        if (vkAllocateMemory(device, &allocInfo, nullptr, &storageBufferMemory) != VK_SUCCESS)
+            throw std::runtime_error("failed to allocate storage buffer memory");
+        vkBindBufferMemory(device, storageBuffer, storageBufferMemory, 0);
+    }
+
+    uint32_t findMemoryType(const VkMemoryRequirements& requirements, VkMemoryPropertyFlags properties)
+    {
+        VkPhysicalDeviceMemoryProperties memProperties = CsySmallVk::Query::physicalDeviceMemoryProperties(physicalDevice);
+        CsySmallVk::LogDebug::printPhysicalDeviceMemoryProperties(memProperties);
+        for (uint32_t i = 0; i < memProperties.memoryTypeCount; ++i)
+        {
+            if (requirements.memoryTypeBits & (1 << i) &&
+                (memProperties.memoryTypes[i].propertyFlags & properties) == properties)
+            {
+                std::cout << "pick memory type [" << i << "]\n";
+                return i;
+            }
+        }
+    }
+
+    void writeMemoryFromHost()
+    {
+        void* data;
+        if (vkMapMemory(device, storageBufferMemory, 0, inputDataSize(), 0, &data) != VK_SUCCESS)
+            throw std::runtime_error("failed to map memory");
+        memcpy(data, inputData.data(), inputDataSize());
+        vkUnmapMemory(device, storageBufferMemory);
+    }
+
+    VkDescriptorSetLayout descriptorSetLayout;
+    void createDescriptorSetLayout()
+    {
+        VkDescriptorSetLayoutBinding binding;
+    }
+
+    // main logical
+    void Run()
+    {
+        createInstance();
+        pickPhyscialDevice();
+        createLogicalDevice();
+        createStorageBuffer();
+    }
 };
 
 
 int main() {
     ComputeShaderExample program;
-    program.createInstance();
-    program.pickPhyscialDevice();
+    program.Run();
     return 0;
 }

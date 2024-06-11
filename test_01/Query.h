@@ -52,5 +52,19 @@ namespace CsySmallVk
 			vkGetPhysicalDeviceProperties(device, &properties);
 			return properties;
 		}
+		_NODISCARD
+			static VkMemoryRequirements memoryRequirements(VkDevice device, VkBuffer buffer)
+		{
+			VkMemoryRequirements memoryRequirements;
+			vkGetBufferMemoryRequirements(device, buffer, &memoryRequirements);
+			return memoryRequirements;
+		}
+		_NODISCARD
+			static VkPhysicalDeviceMemoryProperties physicalDeviceMemoryProperties(VkPhysicalDevice device)
+		{
+			VkPhysicalDeviceMemoryProperties memoryProperties;
+			vkGetPhysicalDeviceMemoryProperties(device, &memoryProperties);
+			return memoryProperties;
+		}
 	};
 }

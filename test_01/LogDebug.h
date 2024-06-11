@@ -64,6 +64,34 @@ namespace CsySmallVk
                 std::cout << "\tSpec Version: " << extension.specVersion << std::endl;
             }
         }
-    
+
+        static void printMemoryRequirements(const VkMemoryRequirements& memRequirements)
+        {
+            std::cout << "Memory Requirements:" << std::endl;
+            std::cout << "- Size: " << memRequirements.size << " bytes" << std::endl;
+            std::cout << "- Alignment: " << memRequirements.alignment << " bytes" << std::endl;
+            std::cout << "- Memory Type Bits: 0x" << std::hex << memRequirements.memoryTypeBits << std::dec << std::endl;
+        }
+
+        static void printPhysicalDeviceMemoryProperties(const VkPhysicalDeviceMemoryProperties& memProperties)
+        {
+            std::cout << "Physical Device Memory Properties:" << std::endl;
+
+            // 打印 Memory Heaps 的信息
+            std::cout << "Memory Heaps Count: " << memProperties.memoryHeapCount << std::endl;
+            for (uint32_t i = 0; i < memProperties.memoryHeapCount; ++i) {
+                std::cout << "Heap " << i << ": Size = " << memProperties.memoryHeaps[i].size << " bytes, Flags = 0x"
+                    << std::hex << memProperties.memoryHeaps[i].flags << std::dec << std::endl;
+            }
+
+            // 打印 Memory Types 的信息
+            std::cout << "Memory Types Count: " << memProperties.memoryTypeCount << std::endl;
+            for (uint32_t i = 0; i < memProperties.memoryTypeCount; ++i) {
+                std::cout << "Type " << i << ": Heap Index = " << memProperties.memoryTypes[i].heapIndex
+                    << ", Property Flags = 0x" << std::hex << memProperties.memoryTypes[i].propertyFlags << std::dec
+                    << std::endl;
+            }
+        }
+
     };
 }
